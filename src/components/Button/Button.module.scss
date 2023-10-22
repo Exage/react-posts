@@ -1,0 +1,31 @@
+@import '../../vars';
+
+.btn {
+    font-size: 14px;
+    padding: 10px 15px;
+
+    background-color: $secColor;
+    border: 2px solid $borderColor;
+    border-radius: 15px;
+
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: background-color .2s linear, border-color .2s linear;
+
+    &:hover {
+        background-color: #282828;
+    }
+
+    &:focus {
+        border-color: $focusColor;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}

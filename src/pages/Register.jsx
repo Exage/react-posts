@@ -1,0 +1,152 @@
+import React, { useState, useEffect } from 'react'
+import { Navigate, Link } from 'react-router-dom'
+
+import { auth, firestore } from '../firebase'
+import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
+import { doc, setDoc } from 'firebase/firestore'
+
+import { Loading } from '../components/Loading/Loading'
+import { Input } from '../components/Input/Input'
+import { Button } from '../components/Button/Button'
+
+import styles from './Auth.module.scss'
+
+export const Register = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [name, setName] = useState('')
+    const [lastName, setLastName] = useState('')
+
+    const [disableInputs, setDisableInputs] = useState(false)
+    const [disableButton, setDisableButton] = useState(false)
+    const [isLoading, setLoading] = useState(true)
+    const [isAuth, setAuth] = useState(false)
+    const [errorCatch, setErrorCatch] = useState(false)
+
+    const setUsersToDb = async (uid) => {
+        if (name && lastName) {
+            const dateNow = new Date().valueOf()
+            await setDoc(doc(firestore, `users/${uid}`), {
+                name: name.toString(),
+                lastName: lastName.toString(),
+                joinDate: dateNow,
+                posts: []
+            })
+            setAuth(true)
+        } else {
+            setDisableInputs(false)
+            setDisableButton(false)
+            setErrorCatch(true)
+        }
+    }
+
+    const handleSubmit = (Event) => {
+        Event.preventDefault()
+        setDisableInputs(true)
+        setDisableButton(true)
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCreditional) => {
+                setUsersToDb(userCreditional.user.uid)
+            })
+            .catch(() => {
+                setDisableInputs(false)
+                setDisableButton(false)
+                setErrorCatch(true)
+            })
+    }
+
+    useEffect(() => {
+        const logged = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setAuth(true)
+            } else {
+                setAuth(false)
+            }
+            setLoading(false)
+        })
+
+        return (() => {
+            logged()
+        })
+    }, [])
+
+    if (isLoading) {
+        return <Loading />
+    }
+
+    if (isAuth) {
+        return <Navigate to='/' />
+    }
+
+    return (
+        <div className={styles.auth}>
+            <div className={styles.authWrapper}>
+                <h1 className={styles.authTitle}>Join Us</h1>
+                <form className={styles.authForm} onSubmit={handleSubmit}>
+                    <div className={styles.authFormInputs}>
+                        <Input
+                            disabled={disableInputs}
+                            type='text'
+                            placeholder='name'
+
+                            className={styles.authFormInput}
+                            style={{ width: 'calc(50% - 10px)' }}
+
+                            value={name}
+                            onChange={Event => setName(Event.target.value)}
+                        />
+                        <Input
+                            disabled={disableInputs}
+                            type='text'
+                            placeholder='lastname'
+
+                            className={styles.authFormInput}
+                            style={{ width: 'calc(50% - 10px)' }}
+
+                            value={lastName}
+                            onChange={Event => setLastName(Event.target.value)}
+                        />
+                        <Input
+                            disabled={disableInputs}
+                            type='email'
+                            placeholder='email'
+
+                            className={styles.authFormInput}
+
+                            value={email}
+                            onChange={Event => setEmail(Event.target.value)}
+                        />
+                        <Input
+                            disabled={disableInputs}
+                            type='password'
+                            placeholder='password'
+
+                            className={styles.authFormInput}
+
+                            value={password}
+                            onChange={Event => setPassword(Event.target.value)}
+                        />
+                    </div>
+
+                    {errorCatch && <span className={styles.authError}>There was a problem</span>}
+
+                    <Button
+                        disabled={disableButton}
+                        type='submit'
+                        className={styles.authFormBtn}
+                        style={
+                            { marginTop: `${errorCatch ? '20px' : '50px'}` }
+                        }
+                    >
+                        Submit
+                    </Button>
+
+                    <span className={styles.authSub}>
+                        or <Link to='/login'>Login</Link>
+                    </span>
+                </form>
+            </div>
+        </div>
+    )
+}

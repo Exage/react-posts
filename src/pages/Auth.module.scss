@@ -1,0 +1,92 @@
+@import '../vars';
+
+.auth {
+    min-height: 100vh;
+
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.authWrapper {
+    max-width: 520px;
+    width: 100%;
+    
+    padding: 0 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.authTitle {
+    margin-bottom: 10px;
+}
+
+.authError {
+    height: 20px;
+    color: $red;
+    margin-top: 10px;
+}
+
+.authSub {
+    height: 18px;
+    font-size: 14px;
+    color: rgba($defaultColor, 50%);
+    
+    text-align: center;
+    
+    margin-top: 10px;
+
+    & > a {
+        color: rgba($defaultColor, 100%);
+        position: relative;
+
+        &:hover::after {
+            top: calc(100% + 2px);
+            width: 100%;
+            background-color: rgba($defaultColor, 100%);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%);
+
+            width: 70%;
+            height: 1px;
+
+            background-color: rgba($defaultColor, 25%);
+
+            z-index: -1;
+
+            transition-property: top, width, background-color;
+            transition-duration: 200ms;
+            transition-timing-function: ease;
+        }
+    }
+}
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+
+    &Inputs {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 15px;
+        gap: 20px;
+    }
+
+    &Input {
+        width: 100%;
+    }
+
+    &Btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,80 @@
+@import '../../vars';
+
+input {
+    background: none;
+    border: none;
+    outline: none;
+
+    padding: 10px 15px;
+
+    font-family: inherit;
+    font-size: inherit;
+
+    color: inherit;
+
+    &::placeholder {
+        color: rgba($defaultColor, 0.1);
+    }
+}
+
+.inputWrapper {
+    display: flex;
+    position: relative;
+
+    background-color: $secColor;
+
+    border-radius: 15px;
+    border: 2px solid $borderColor;
+
+    transition: border-color .2s linear;
+
+    &Field {
+        width: 100%;
+    }
+
+    &Focus {
+        border: 2px solid $focusColor;
+    }
+
+    &Disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    &Password {
+        & > .inputWrapperField {
+            width: calc(100% - 30px);
+        }
+
+        &Btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 15px;
+
+            width: 30px;
+            height: 23px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+
+            &:focus {
+                outline: 1px solid $focusColor;
+            }
+        }
+    }
+
+    &Error {
+        border: 2px solid $red;
+    }
+}
