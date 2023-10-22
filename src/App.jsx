@@ -11,10 +11,10 @@ function App() {
 	return (
 		<div className="App">
 			<Routes>
-				<Route path='/react-posts-s/' element={<Home />}/>
-				<Route path='/react-posts-s/login' element={<Login />}/>
-				<Route path='/react-posts-s/register' element={<Register />}/>
-				<Route path='/react-posts-s/post/:postid' element={<Post />}/>
+				<Route index element={<Home />}/>
+				<Route path='/login' element={<Login />}/>
+				<Route path='/register' element={<Register />}/>
+				<Route path='/:postid' element={<Post />}/>
 				<Route path='*' element={<Error />}/>
 			</Routes>
 		</div>
