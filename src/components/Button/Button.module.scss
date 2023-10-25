@@ -14,7 +14,7 @@
 
     cursor: pointer;
 
-    transition: background-color .2s linear, border-color .2s linear;
+    transition: background-color .2s linear, border-color .2s linear, opacity .2s linear;
 
     &:hover {
         background-color: #282828;

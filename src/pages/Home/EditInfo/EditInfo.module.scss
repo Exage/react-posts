@@ -1,0 +1,84 @@
+@import '../../../_vars';
+@import '../../../mixins';
+
+$btnSubmitWidth: 150;
+$spaceBetween: 15px;
+
+$calcInputsWidth: calc($btnSubmitWidth / 2) + $spaceBetween;
+
+.editInfo {
+    margin-top: 35px;
+    padding: 10px;
+    background-color: $secColor;
+
+    border-radius: 15px;
+
+    &Disabled {
+        display: none;
+    }
+
+    &Header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 5px;
+
+        &Btn {
+            width: 20px;
+            height: 20px;
+
+            position: relative;
+
+            font-size: 0;
+
+            cursor: pointer;
+
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: calc(50% - 1px);
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: $defaultColor;
+            }
+
+            &::before {
+                transform: rotate(45deg);
+            }
+
+            &::after {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+
+    &Body {
+        margin-top: 10px;
+
+        &Form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        &Input {
+            width: calc(50% - $calcInputsWidth);
+
+            @include bp($bpTablet) {
+                margin-top: 15px;
+                width: 100%
+            }
+        }
+
+        &Button {
+            width: #{$btnSubmitWidth}px;
+
+            @include bp($bpTablet) {
+                margin-top: 50px;
+                width: 100%
+            }
+        }
+    }
+}

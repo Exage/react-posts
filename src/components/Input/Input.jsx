@@ -9,7 +9,7 @@ export const Input = ({ placeholder, type = 'text', disabled = false, className,
 
     if (type === 'text' || type === 'email') {
         return (
-            <div className={`${styles.inputWrapper}${className ? ` ${className}` : ''}${disabled ? ` ${styles.inputWrapperDisabled}` : ''}${focus ? ` ${styles.inputWrapperFocus}` : ''}`} style={style}>
+            <div className={`${styles.inputWrapper}${className ? ` ${className}` : ''}${disabled ? ` ${styles.inputWrapperDisabled}` : ''}${focus ? ` ${styles.inputWrapperFocus}` : ''} input`} style={style}>
                 <input
                     disabled={disabled}
                     type={type}
@@ -27,7 +27,7 @@ export const Input = ({ placeholder, type = 'text', disabled = false, className,
     }
     if (type === 'password') {
         return (
-            <div className={`${styles.inputWrapper} ${styles.inputWrapperPassword}${className ? ` ${className}` : ''}${disabled ? ` ${styles.inputWrapperDisabled}` : ''}${focus ? ` ${styles.inputWrapperFocus}` : ''}`} style={style}>
+            <div className={`${styles.inputWrapper} ${styles.inputWrapperPassword}${className ? ` ${className}` : ''}${disabled ? ` ${styles.inputWrapperDisabled}` : ''}${focus ? ` ${styles.inputWrapperFocus}` : ''} input`} style={style}>
                 <input
                     disabled={disabled}
                     type={showPassword ? 'text' : 'password'}

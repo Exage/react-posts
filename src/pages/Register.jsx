@@ -26,12 +26,13 @@ export const Register = () => {
     const setUsersToDb = async (uid) => {
         if (name && lastName) {
             const dateNow = new Date().valueOf()
-            await setDoc(doc(firestore, `users/${uid}`), {
+            const obj = {
                 name: name.toString(),
                 lastName: lastName.toString(),
                 joinDate: dateNow,
                 posts: []
-            })
+            }
+            await setDoc(doc(firestore, `users/${uid}`), obj)
             setAuth(true)
         } else {
             setDisableInputs(false)

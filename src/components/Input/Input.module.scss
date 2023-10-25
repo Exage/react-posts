@@ -26,7 +26,7 @@ input {
     border-radius: 15px;
     border: 2px solid $borderColor;
 
-    transition: border-color .2s linear;
+    transition: background-color .2s linear, border-color .2s linear, opacity .2s linear;
 
     &Field {
         width: 100%;
