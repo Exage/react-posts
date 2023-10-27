@@ -1,0 +1,32 @@
+@import '../../../vars';
+
+.postsWrapper {
+    margin-top: 35px;
+    transition: opacity .2s ease;
+
+    .post:first-child {
+        margin-top: 0;
+    }
+
+    &Fetching {
+        opacity: 0.5;
+    }
+}
+
+.postsEmpty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-height: 200px;
+    height: 100%;
+
+    text-align: center;
+    padding: 20px;
+
+    &Icon {
+        width: 40px;
+        height: 40px;
+    }
+}

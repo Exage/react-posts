@@ -2,7 +2,7 @@ import React from 'react'
 import { FaSignOutAlt } from 'react-icons/fa'
 import { FiEdit2 } from 'react-icons/fi'
 
-import { Button } from '../../../components/Button/Button'
+import { Button } from '../../components/UI/Button/Button'
 
 import styles from './Header.module.scss'
 
@@ -13,7 +13,7 @@ export const Header = ({ userData, userSignOut, editInfo, controlsDisabled }) =>
                 Welcome, <h3>{userData.name} {userData.lastName}</h3>
             </div>
             <div className={styles.headerControls}>
-                <Button 
+                <Button
                     title={'Edit'} 
                     className={`${styles.headerControlsBtn} ${styles.headerControlsBtnEditInfo}`} 
                     onClick={editInfo}

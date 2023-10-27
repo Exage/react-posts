@@ -1,0 +1,43 @@
+@import '../../../vars';
+
+.post {
+    margin-top: 75px;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &Header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding-bottom: 10px;
+        border-bottom: 2px solid $borderColor;
+    }
+
+    &Delete {
+        width: 20px;
+        height: 20px;
+
+        cursor: pointer;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &Body {
+        margin-top: 10px;
+    }
+
+    &Bottom {
+        display: flex;
+        justify-content: space-between;
+
+        font-size: 14px;
+
+        margin-top: 20px;
+    }
+}

@@ -5,10 +5,11 @@ import { auth, firestore } from '../firebase'
 import { doc, getDoc, setDoc } from "firebase/firestore"
 
 import { Navigate } from 'react-router-dom'
-import { Loading } from '../components/Loading/Loading.jsx'
+import { Loading } from '../components/Loading/Loading'
 
-import { Header } from './Home/Header/Header'
-import { EditInfo } from './Home/EditInfo/EditInfo'
+import { Header } from '../components/Header/Header'
+import { EditInfo } from '../components/EditInfo/EditInfo'
+import { Posts } from '../components/Posts/Posts'
 
 import styles from './Home.module.scss'
 
@@ -31,6 +32,7 @@ export const Home = () => {
             setUserData(docSnap.data())
         } else {
             setAuth(false)
+            console.log('Document does not exist')
         }
 
         setLoading(false)
@@ -89,6 +91,14 @@ export const Home = () => {
                         setUserData={setUserData}
                     />
                 )}
+                <Posts 
+                    userData={userData}
+                    setUserData={setUserData} 
+                    uid={uid} 
+                    
+                    controlsDisabled={controlsDisabled}
+                    setControlDisabled={setControlDisabled}
+                />
             </div>
         </div>
     )

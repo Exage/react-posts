@@ -6,8 +6,8 @@ import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/aut
 import { doc, setDoc } from 'firebase/firestore'
 
 import { Loading } from '../components/Loading/Loading'
-import { Input } from '../components/Input/Input'
-import { Button } from '../components/Button/Button'
+import { Input } from '../components/UI/Input/Input'
+import { Button } from '../components/UI/Button/Button'
 
 import styles from './Auth.module.scss'
 
@@ -24,12 +24,20 @@ export const Register = () => {
     const [errorCatch, setErrorCatch] = useState(false)
 
     const setUsersToDb = async (uid) => {
-        if (name && lastName) {
-            const dateNow = new Date().valueOf()
+        if (name.trim() && lastName.trim()) {
+            const dateNow = new Date()
             const obj = {
-                name: name.toString(),
-                lastName: lastName.toString(),
-                joinDate: dateNow,
+                name: name.trim(),
+                lastName: lastName.trim(),
+                joinDate: {
+                    seconds: dateNow.getSeconds(),
+                    minutes: dateNow.getMinutes(),
+                    hours: dateNow.getHours(),
+                    day: dateNow.getDate(),
+                    month: dateNow.getMonth() + 1,
+                    year: dateNow.getFullYear(),
+                    valueOf: dateNow.valueOf()
+                },
                 posts: []
             }
             await setDoc(doc(firestore, `users/${uid}`), obj)
@@ -38,6 +46,7 @@ export const Register = () => {
             setDisableInputs(false)
             setDisableButton(false)
             setErrorCatch(true)
+            setAuth(false)
         }
     }
 
@@ -130,7 +139,7 @@ export const Register = () => {
                         />
                     </div>
 
-                    {errorCatch && <span className={styles.authError}>There was a problem</span>}
+                    {errorCatch && <span className='error'>There was a problem</span>}
 
                     <Button
                         disabled={disableButton}

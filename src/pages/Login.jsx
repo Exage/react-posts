@@ -5,8 +5,8 @@ import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 import { Navigate } from 'react-router-dom'
 
 import { Loading } from '../components/Loading/Loading'
-import { Button } from '../components/Button/Button'
-import { Input } from '../components/Input/Input'
+import { Button } from '../components/UI/Button/Button'
+import { Input } from '../components/UI/Input/Input'
 
 import styles from './Auth.module.scss'
 
@@ -89,7 +89,7 @@ export const Login = () => {
                         />
                     </div>
 
-                    {errorCatch && <span className={styles.authError}>Incorrect Email or Password</span>}
+                    {errorCatch && <span className='error'>Incorrect Email or Password</span>}
 
                     <Button
                         disabled={disableButton}

@@ -1,6 +1,6 @@
-@import '../../vars';
+@import '../../../_vars';
 
-input {
+input, textarea {
     background: none;
     border: none;
     outline: none;
@@ -9,6 +9,8 @@ input {
 
     font-family: inherit;
     font-size: inherit;
+
+    resize: none;
 
     color: inherit;
 
@@ -30,6 +32,7 @@ input {
 
     &Field {
         width: 100%;
+        height: 100%;
     }
 
     &Focus {
@@ -43,7 +46,7 @@ input {
 
     &Password {
         & > .inputWrapperField {
-            width: calc(100% - 30px);
+            width: calc(100% - 45px);
         }
 
         &Btn {

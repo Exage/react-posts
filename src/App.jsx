@@ -14,7 +14,7 @@ function App() {
 				<Route index element={<Home />}/>
 				<Route path='/login' element={<Login />}/>
 				<Route path='/register' element={<Register />}/>
-				<Route path='/:postid' element={<Post />}/>
+				<Route path='/p/:postid' element={<Post />}/>
 				<Route path='*' element={<Error />}/>
 			</Routes>
 		</div>

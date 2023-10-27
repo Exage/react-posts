@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 
 import { doc, setDoc } from 'firebase/firestore'
-import { firestore } from '../../../firebase'
+import { firestore } from '../../firebase'
 
 import styles from './EditInfo.module.scss'
 
-import { Button } from '../../../components/Button/Button'
-import { Input } from '../../../components/Input/Input'
+import { Button } from '../UI/Button/Button'
+import { Input } from '../UI/Input/Input'
 
 export const EditInfo = ({ closeElem, uid, userData, setUserData, setControlDisabled }) => {
     const [nameToUpd, setNameToUpd] = useState(userData.name)
     const [lastNameToUpd, setLastNameToUpd] = useState(userData.lastName)
 
     const [isDataSend, setDataSend] = useState(false)
-    const [btnDisable, setBtnDisable] = useState('')
+    const [btnDisable, setBtnDisable] = useState(true)
 
     const updateUserData = async (Event) => {
         Event.preventDefault()

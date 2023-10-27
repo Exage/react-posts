@@ -1,0 +1,49 @@
+@import '../../../vars';
+@import '../../../mixins';
+
+.makePost {
+    max-width: 920px;
+    width: 100%;
+    
+    margin: 0 auto;
+
+    margin-top: 35px;
+
+    &Form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+
+        margin-top: 20px;
+
+        @include bp($bpTablet) {
+            align-items: stretch;
+        }
+    }
+
+    &Hr {
+        margin: 0;
+        padding: 0;
+
+        background: none;
+        border: none;
+
+        width: 100%;
+        height: 2px;
+
+        background-color: $borderColor;
+    }
+
+    &Input {
+        width: 100%;
+        
+        &Title {
+            width: 100%;
+        }
+
+        &TextArea {
+            margin-top: 15px;
+        }
+    }
+}
